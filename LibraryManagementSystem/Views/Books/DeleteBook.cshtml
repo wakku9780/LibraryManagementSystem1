@@ -1,0 +1,25 @@
+﻿@model LibraryManagementSystem.Models.Book
+
+<h2>Delete Book</h2>
+
+<p>Are you sure you want to delete the following book?</p>
+
+<div class="form-group">
+    <label>Title</label>
+    <p>@Model.Title</p>
+</div>
+<div class="form-group">
+    <label>Author</label>
+    <p>@Model.Author</p>
+</div>
+<div class="form-group">
+    <label>ISBN</label>
+    <p>@Model.ISBN</p>
+</div>
+
+<form asp-action="DeleteConfirmed" asp-route-id="@Model.BookId" method="post">
+    <input type="hidden" asp-for="BookId" />  <!-- Pass the ID properly -->
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a class="btn btn-secondary" href="@Url.Action("Index", "Books")">Cancel</a>
+</form>
+

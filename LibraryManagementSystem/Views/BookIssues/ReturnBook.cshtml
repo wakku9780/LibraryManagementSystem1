@@ -1,0 +1,9 @@
+﻿@model LibraryManagementSystem.Models.BookIssue
+
+<h2>Return Book</h2>
+
+<p>Are you sure you want to return the book "<strong>@Model.Book.Title</strong>" issued to "<strong>@Model.User.Name</strong>"?</p>
+
+<form asp-action="ReturnConfirmed" method="post">
+    <button type="submit" class="btn btn-primary">Return</button>
+</form>

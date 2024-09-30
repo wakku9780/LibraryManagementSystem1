@@ -1,0 +1,30 @@
+﻿@model IEnumerable<LibraryManagementSystem.Models.User>
+
+<h2>Users List</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Name</td>
+                <td>@user.Email</td>
+                <td>@user.PhoneNumber</td>
+                <td>
+                    <a href="@Url.Action("EditUser", "Users", new { id = user.UserId })" class="btn btn-primary">Edit</a>
+                    <a href="@Url.Action("DeleteUser", "Users", new { id = user.UserId })" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="@Url.Action("AddUser", "Users")" class="btn btn-success">Add New User</a>

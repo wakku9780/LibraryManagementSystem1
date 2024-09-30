@@ -1,0 +1,86 @@
+﻿@model IEnumerable<LibraryManagementSystem.Models.Book>
+
+<h2>Books List</h2>
+
+<form asp-action="Search" method="get">
+    <div class="form-group">
+        <input type="text" name="searchTerm" placeholder="Search by title, author, or ISBN" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>ISBN</th>
+            <th>Published Date</th>
+            <th>Available Copies</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var book in Model)
+        {
+            <tr>
+                <td>@book.Title</td>
+                <td>@book.Author</td>
+                <td>@book.ISBN</td>
+                <td>@book.PublishedDate.ToString("yyyy-MM-dd")</td>
+                <td>@book.AvailableCopies</td>
+                <td>
+                    <a href="@Url.Action("EditBook", "Books", new { id = book.BookId })" class="btn btn-primary">Edit</a>
+                    <a href="@Url.Action("DeleteBook", "Books", new { id = book.BookId })" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="@Url.Action("AddBook", "Books")" class="btn btn-success">Add New Book</a>
+
+
+@* @model IEnumerable<LibraryManagementSystem.Models.Book>
+
+<h2>Books List</h2>
+<a class="btn btn-primary" href="@Url.Action("AddBook", "Books")">Add New Book</a>
+
+<table class="table table-bordered mt-3">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>ISBN</th>
+            <th>Published Date</th>
+            <th>Available Copies</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Any())  // Check if there are any books
+        {
+            foreach (var book in Model)
+            {
+                <tr>
+                    <td>@book.Title</td>
+                    <td>@book.Author</td>
+                    <td>@book.ISBN</td>
+                    <td>@book.PublishedDate.ToShortDateString()</td>
+                    <td>@book.AvailableCopies</td>
+                    <td>
+                        <a class="btn btn-warning" href="@Url.Action("EditBook", "Books", new { id = book.BookId })">Edit</a>
+                        <a class="btn btn-danger" href="@Url.Action("DeleteBook", "Books", new { id = book.BookId })">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="6" class="text-center">No books available</td>
+            </tr>
+        }
+    </tbody>
+</table>
+ *@

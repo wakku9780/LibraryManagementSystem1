@@ -1,0 +1,29 @@
+﻿@model LibraryManagementSystem.Models.Book
+
+
+<h2>Edit Book</h2>
+
+<form asp-action="EditBook" method="post">
+    <div class="form-group">
+        <label for="Title">Title</label>
+        <input type="text" class="form-control" id="Title" name="Title" value="@Model.Title" required>
+    </div>
+    <div class="form-group">
+        <label for="Author">Author</label>
+        <input type="text" class="form-control" id="Author" name="Author" value="@Model.Author" required>
+    </div>
+    <div class="form-group">
+        <label for="ISBN">ISBN</label>
+        <input type="text" class="form-control" id="ISBN" name="ISBN" value="@Model.ISBN" required>
+    </div>
+    <div class="form-group">
+        <label for="PublishedDate">Published Date</label>
+        <input type="date" class="form-control" id="PublishedDate" name="PublishedDate" value="@Model.PublishedDate.ToString("yyyy-MM-dd")" required>
+    </div>
+    <div class="form-group">
+        <label for="AvailableCopies">Available Copies</label>
+        <input type="number" class="form-control" id="AvailableCopies" name="AvailableCopies" value="@Model.AvailableCopies" required>
+    </div>
+    <button type="submit" class="btn btn-primary mt-3">Save Changes</button>
+    <a class="btn btn-secondary mt-3" href="@Url.Action("Index", "Books")">Cancel</a>
+</form>

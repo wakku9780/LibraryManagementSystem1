@@ -1,0 +1,25 @@
+﻿@model LibraryManagementSystem.Models.BookIssue
+
+<form asp-action="IssueBook" method="post">
+    <div class="form-group">
+        <label asp-for="UserId">User</label>
+        <select asp-for="UserId" class="form-control">
+            @foreach (var user in ViewData["Users"] as List<LibraryManagementSystem.Models.User>)
+            {
+                <option value="@user.UserId">@user.Name</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="BookId">Book</label>
+        <select asp-for="BookId" class="form-control">
+            @foreach (var book in ViewData["Books"] as List<LibraryManagementSystem.Models.Book>)
+            {
+                <option value="@book.BookId">@book.Title</option>
+            }
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Issue Book</button>
+</form>

@@ -1,0 +1,30 @@
+﻿ 
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Book Title</th>
+            <th>Issued To</th>
+            <th>Issue Date</th>
+            <th>Return Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var issue in Model)
+        {
+            <tr>
+                <td>@issue.Book.Title</td>
+                <td>@issue.User.Name</td>
+                <td>@issue.IssueDate.ToShortDateString()</td>
+                <td>@(issue.ReturnDate.HasValue ? issue.ReturnDate.Value.ToShortDateString() : "Not Returned")</td>
+                <td>
+                    @if (!issue.ReturnDate.HasValue)
+                    {
+                        <a asp-action="ReturnBook" asp-route-id="@issue.IssueId" class="btn btn-primary">Return</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

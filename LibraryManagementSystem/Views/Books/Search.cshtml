@@ -1,0 +1,46 @@
+﻿@model IEnumerable<LibraryManagementSystem.Models.Book>
+
+<h2>Search Books</h2>
+
+<form asp-action="Search" method="get">
+    <div class="form-group">
+        <input type="text" name="searchTerm" placeholder="Enter title, author, or ISBN" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+
+@if (Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>ISBN</th>
+                <th>Published Date</th>
+                <th>Available Copies</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var book in Model)
+            {
+                <tr>
+                    <td>@book.Title</td>
+                    <td>@book.Author</td>
+                    <td>@book.ISBN</td>
+                    <td>@book.PublishedDate.ToString("yyyy-MM-dd")</td>
+                    <td>@book.AvailableCopies</td>
+                    <td>
+                        <a href="@Url.Action("EditBook", "Books", new { id = book.BookId })" class="btn btn-primary">Edit</a>
+                        <a href="@Url.Action("DeleteBook", "Books", new { id = book.BookId })" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No books found matching the search term.</p>
+}
